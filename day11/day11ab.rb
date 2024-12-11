@@ -22,19 +22,14 @@ def blink_stones(stone_count)
   new_stone_count
 end
 
-def blink_single_stone(rock)
-  pebbles = []
-
-  if rock.zero?
-    pebbles.append(rock + 1)
-  elsif rock.digits.length.even?
-    pebbles.append(rock.to_s[..rock.digits.length / 2 - 1].to_i)
-    pebbles.append(rock.to_s[rock.digits.length / 2..].to_i)
+def blink_single_stone(stone)
+  if stone.zero?
+    [stone + 1]
+  elsif stone.digits.length.even?
+    [stone.to_s[..stone.digits.length / 2 - 1].to_i, stone.to_s[stone.digits.length / 2..].to_i]
   else
-    pebbles.append(rock * 2024)
+    [stone * 2024]
   end
-
-  pebbles
 end
 
 puts "Part 1: #{count_stones(25)}"
